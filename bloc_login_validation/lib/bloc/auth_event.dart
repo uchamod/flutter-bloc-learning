@@ -1,5 +1,7 @@
 part of "auth_bloc.dart";
+//register and logout events
 
+//immmutable class prevent unstability of objects
 @immutable
 sealed class AuthEvent {}
 
