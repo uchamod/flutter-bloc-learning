@@ -54,4 +54,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(FailedAuth(response: e.toString()));
     }
   }
+
+  // @override
+  // void onChange(Change<AuthState> change) {
+  //   // TODO: implement onChange
+  //   super.onChange(change);
+  //   print("a bloc is changed $change");
+  // }
+
+  // @override
+  // void onTransition(Transition<AuthEvent, AuthState> transition) {
+  //   // TODO: implement onTransition
+  //   super.onTransition(transition);
+  //   print("transition occured $transition");
+  // }
 }
