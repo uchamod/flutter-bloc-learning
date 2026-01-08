@@ -2,7 +2,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationProvider {
-   //get the current city
+  //get the current city
   Future<String> getCurrentCity() async {
     try {
       bool isServiceEnable = await Geolocator.isLocationServiceEnabled();
@@ -23,15 +23,20 @@ class LocationProvider {
 
       //if permissions not denied get the current location
       Position possition = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+        locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+      );
 
       //placemark for given coordinates
       List<Placemark> placeMark = await placemarkFromCoordinates(
-          possition.latitude, possition.longitude);
+        possition.latitude,
+        possition.longitude,
+      );
       if (placeMark.isNotEmpty) {
-        return placeMark[0].locality!;
+        return placeMark[0].locality ??
+            placeMark[0].subAdministrativeArea ??
+            "London";
       } else {
-        return "No location Found";
+        return "London"; // Default fallback
       }
     } catch (err) {
       throw Exception("Something went wrong " + err.toString());

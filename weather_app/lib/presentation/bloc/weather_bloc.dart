@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/data/repos/weather_repostory.dart';
-import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/domain/repositories/weather_repostory.dart';
+import 'package:weather_app/data/models/weather_model.dart';
 
 part 'weather_event.dart';
 part 'weather_state.dart';

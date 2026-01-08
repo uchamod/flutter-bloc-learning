@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/data/models/weather_model.dart';
 
 class WeatherInfoSection extends StatelessWidget {
   final WeatherModel weatherModel;
