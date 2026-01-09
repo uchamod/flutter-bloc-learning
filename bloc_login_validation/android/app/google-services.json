@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "630357407142",
+    "project_id": "validation-demo-4a72f",
+    "storage_bucket": "validation-demo-4a72f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630357407142:android:7db543abf6ed6031fbcb67",
+        "android_client_info": {
+          "package_name": "com.example.bloc_login_validation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdNQa_FSON2LaXBJgF2RiLZ6_Qn2xzsRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

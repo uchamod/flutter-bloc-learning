@@ -10,9 +10,9 @@ final class InitialAuth extends AuthState {}
 
 //succsuss state
 final class SuccsussAuth extends AuthState {
-  final String userId; //user model data
+  final UserModel user; //user model data
 
-  SuccsussAuth({required this.userId});
+  SuccsussAuth({required this.user});
 }
 
 //fail state

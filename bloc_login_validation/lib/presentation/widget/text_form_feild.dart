@@ -1,4 +1,4 @@
-import 'package:bloc_login_validation/pages/color_pallet.dart';
+import 'package:bloc_login_validation/core/util/color_pallet.dart';
 import 'package:flutter/material.dart';
 
 class ReusableTextFormFeild extends StatelessWidget {

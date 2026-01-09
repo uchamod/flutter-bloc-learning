@@ -1,12 +1,13 @@
-import 'package:bloc_login_validation/bloc/auth_bloc.dart';
-import 'package:bloc_login_validation/pages/color_pallet.dart';
-import 'package:bloc_login_validation/pages/homepage.dart';
-import 'package:bloc_login_validation/widget/reusable_button.dart';
-import 'package:bloc_login_validation/widget/text_form_feild.dart'
+import 'package:bloc_login_validation/core/util/color_pallet.dart';
+import 'package:bloc_login_validation/presentation/bloc/auth_bloc.dart';
+import 'package:bloc_login_validation/presentation/pages/main_wrapper.dart';
+import 'package:bloc_login_validation/presentation/pages/registerpage.dart';
+import 'package:bloc_login_validation/presentation/widget/reusable_button.dart';
+import 'package:bloc_login_validation/presentation/widget/text_form_feild.dart'
     show ReusableTextFormFeild;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -34,7 +35,7 @@ class _LoginpageState extends State<Loginpage> {
           }
           if (state is SuccsussAuth) {
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => Homepage()),
+              MaterialPageRoute(builder: (context) => MainWrapper()),
               (route) => false,
             );
           }
@@ -46,36 +47,44 @@ class _LoginpageState extends State<Loginpage> {
             primary: true,
             clipBehavior: Clip.hardEdge,
             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              textBaseline: TextBaseline.alphabetic,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisSize: MainAxisSize.max,
+              // textBaseline: TextBaseline.alphabetic,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset("assets/Ellipse 1.svg"),
-                Image.asset(
-                  "assets/Ellipse 3.png",
-                  alignment: Alignment(0.1, -0.1),
-                ),
-                Text(
-                  "Login Verification",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: secondorywhite,
+                // Image.asset(
+                //   "assets/Ellipse 3.png",
+                //   alignment: Alignment(0.1, -0.1),
+                // ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Login Verification",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: secondorywhite,
+                    ),
                   ),
                 ),
-                SizedBox(height: 14),
+                SizedBox(height: 24),
+                SvgPicture.asset(
+                  "assets/login-lock-refresh-svgrepo-com.svg",
+                  height: 128,
+                  width: 128,
+                ),
+                SizedBox(height: 24),
                 Form(
                   key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    verticalDirection: VerticalDirection.down,
 
                     children: [
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width * 0.5,
+                          maxWidth: MediaQuery.of(context).size.width * 0.85,
                         ),
                         child: ReusableTextFormFeild(
                           isTagFiled: false,
@@ -94,10 +103,10 @@ class _LoginpageState extends State<Loginpage> {
                           // },
                         ),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width * 0.5,
+                          maxWidth: MediaQuery.of(context).size.width * 0.85,
                         ),
                         child: ReusableTextFormFeild(
                           isTagFiled: false,
@@ -116,17 +125,17 @@ class _LoginpageState extends State<Loginpage> {
                           // },
                         ),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
                       //sing in button
                       ConstrainedBox(
                         constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width * 0.5,
+                          maxWidth: MediaQuery.of(context).size.width * 0.85,
                         ),
                         child: InkWell(
                           onTap: () {
                             //call the event when press the button
                             context.read<AuthBloc>().add(
-                              RegisterButtonPressedEvent(
+                              LoginButtonPressedEvent(
                                 email: _emailController.text.trim(),
                                 password: _passwordController.text.trim(),
                               ),
@@ -136,19 +145,50 @@ class _LoginpageState extends State<Loginpage> {
                             builder: (context, state) {
                               if (state is LoadingAuthIndicator) {
                                 return ReusableButton(
-                                  lable: "Sing Up",
+                                  lable: "Login",
                                   isLoad: true,
                                 );
                               }
                               return ReusableButton(
-                                lable: "Sing Up",
+                                lable: "Login",
                                 isLoad: false,
                               );
                             },
                           ),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 4),
+                      //go to register page
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't have an account?",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: secondorywhite,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => Registerpage(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              "Register",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                                color: primaryYellow,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
